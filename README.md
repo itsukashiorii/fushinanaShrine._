@@ -4,6 +4,10 @@
 </p>
 
 <p align="center">
+  <img src="https://github.com/itsukashiorii/1sl4_o02.v02/raw/main/tokisaki%20kurumi.jpg" width="400px" alt="Tokisaki Kurumi">
+</p>
+
+<p align="center">
   <img src="https://komarev.com/ghpvc/?username=fushinanaShrine&label=Profile%20Views&color=blue&style=flat" alt="Profile Views" />
   <img src="https://img.shields.io/github/followers/fushinanaShrine?label=Followers&style=social" alt="GitHub Followers">
   <img src="https://img.shields.io/github/stars/fushinanaShrine?label=Stars&style=social" alt="GitHub Stars">
