@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Festival Jepang</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B8B;
+            --secondary: #4ECDC4;
+            --accent: #FFD166;
+            --light: #F7F9FC;
+            --dark: #2D3436;
+            --sakura: #FFB7C5;
+            --sky: #87CEEB;
+            --grass: #A8E6CF;
+        }
+
+        body {
+            font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #FFF9F2 0%, #F0F8FF 100%);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Background decorations */
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .lantern {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background: var(--sakura);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            opacity: 0.6;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .lantern:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 10px;
+            background: #D63031;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .lantern:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 15px;
+            background: #636E72;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .sakura {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--sakura);
+            border-radius: 50% 0 50% 0;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0.7; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .typing-text {
+            font-size: 1rem;
+            color: var(--secondary);
+            min-height: 25px;
+            font-weight: 500;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a:hover:after {
+            width: 80%;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            border-radius: 5px 0 0 5px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            text-align: center;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            bottom: -8px;
+            left: 20%;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        .about p {
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .skill {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-grid, .websites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .portfolio-card, .website-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            background: white;
+            position: relative;
+        }
+
+        .portfolio-card:hover, .website-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-preview, .website-preview {
+            height: 150px;
+            background: #f0f0f0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .portfolio-preview:after, .website-preview:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 70%, rgba(255,255,255,0.8) 100%);
+            z-index: 1;
+        }
+
+        .portfolio-preview iframe, .website-preview iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transform: scale(0.6);
+            transform-origin: 0 0;
+            width: 166.67%;
+            height: 166.67%;
+        }
+
+        .portfolio-info, .website-info {
+            padding: 15px;
+        }
+
+        .portfolio-title, .website-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .portfolio-desc, .website-desc {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .portfolio-link, .website-link {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 5px 15px;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-link:hover, .website-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-container {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-icon {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* Facebook Groups */
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .group-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .group-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #1877f2, #42a5f5);
+        }
+
+        .group-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .group-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #1877f2;
+        }
+
+        .group-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-size: 1rem;
+        }
+
+        .group-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #1877f2, #42a5f5);
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+        }
+
+        .group-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(24, 119, 242, 0.4);
+        }
+
+        /* Social Media */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .social-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .social-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .social-handle {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* Social Media Colors */
+        .facebook {
+            border-top: 5px solid #1877f2;
+        }
+        .facebook .social-icon {
+            color: #1877f2;
+        }
+
+        .twitter {
+            border-top: 5px solid #1DA1F2;
+        }
+        .twitter .social-icon {
+            color: #1DA1F2;
+        }
+
+        .instagram {
+            border-top: 5px solid #E4405F;
+        }
+        .instagram .social-icon {
+            color: #E4405F;
+        }
+
+        .pinterest {
+            border-top: 5px solid #E60023;
+        }
+        .pinterest .social-icon {
+            color: #E60023;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            margin-top: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            font-size: 0.9rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-grid,
+            .websites-grid,
+            .groups-grid,
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav a {
+                margin: 0 8px;
+                font-size: 0.8rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decoration">
+        <!-- Lampions -->
+        <div class="lantern" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
+        <div class="lantern" style="top: 20%; left: 80%; animation-delay: 2s;"></div>
+        <div class="lantern" style="top: 60%; left: 15%; animation-delay: 4s;"></div>
+        <div class="lantern" style="top: 70%; left: 85%; animation-delay: 6s;"></div>
+        <div class="lantern" style="top: 40%; left: 50%; animation-delay: 8s;"></div>
+        
+        <!-- Sakura petals -->
+        <div class="sakura" style="left: 10%; animation-duration: 10s; animation-delay: 0s;"></div>
+        <div class="sakura" style="left: 20%; animation-duration: 12s; animation-delay: 1s;"></div>
+        <div class="sakura" style="left: 30%; animation-duration: 8s; animation-delay: 2s;"></div>
+        <div class="sakura" style="left: 40%; animation-duration: 11s; animation-delay: 3s;"></div>
+        <div class="sakura" style="left: 50%; animation-duration: 9s; animation-delay: 4s;"></div>
+        <div class="sakura" style="left: 60%; animation-duration: 13s; animation-delay: 5s;"></div>
+        <div class="sakura" style="left: 70%; animation-duration: 10s; animation-delay: 6s;"></div>
+        <div class="sakura" style="left: 80%; animation-duration: 12s; animation-delay: 7s;"></div>
+        <div class="sakura" style="left: 90%; animation-duration: 9s; animation-delay: 8s;"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Portfolio Festival Jepang</h1>
+            <div class="typing-text" id="typingText"></div>
+        </header>
+
+        <nav>
+            <a href="#about">Tentang</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#websites">Website</a>
+            <a href="#groups">Grup</a>
+            <a href="#social">Media Sosial</a>
+            <a href="#contact">Kontak</a>
+        </nav>
+
+        <section id="about">
+            <h2>Tentang Saya</h2>
+            <div class="about">
+                <p>Halo! Saya seorang web developer yang menciptakan website fungsional dan menarik.</p>
+                <p>Saya memiliki pengalaman dalam berbagai teknologi web modern dan siap membantu proyek Anda.</p>
+                <div class="skills">
+                    <span class="skill">HTML</span>
+                    <span class="skill">CSS</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">React</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <h2>Portfolio Saya</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-preview">
+                        <iframe src="https://deltazexis.vercel.app/" loading="lazy"></iframe>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Pemburik Gambar</h3>
+                        <p class="portfolio-desc">Website kreatif dengan desain modern dan fokus visualisasi gambar.</p>
+                        <a href="https://deltazexis.vercel.app/" target="_blank" class="portfolio-link">Kunjungi</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-preview">
+                        <iframe src="https://delt-a.vercel.app/" loading="lazy"></iframe>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Versi Tradisional Jepang</h3>
+                        <p class="portfolio-desc">Website dengan estetika tradisional Jepang yang menampilkan budaya.</p>
+                        <a href="https://delt-a.vercel.app/" target="_blank" class="portfolio-link">Kunjungi</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-preview">
+                        <iframe src="https://aelta-liart.vercel.app/" loading="lazy"></iframe>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Versi Global</h3>
+                        <p class="portfolio-desc">Website dengan desain global modern untuk audiens internasional.</p>
+                        <a href="https://aelta-liart.vercel.app/" target="_blank" class="portfolio-link">Kunjungi</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="websites">
+            <h2>Koleksi Website</h2>
+            <p style="text-align: center; margin-bottom: 15px; font-size: 0.9rem;">Jelajahi berbagai website kreatif yang telah saya kembangkan!</p>
+            <div class="websites-grid">
+                <div class="website-card">
+                    <div class="website-preview">
+                        <iframe src="https://itsukashiorii.github.io/itsukashiorii-Goddes-of-destruction-Goddess-of-creation/" loading="lazy"></iframe>
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">Goddess of Destruction</h3>
+                        <p class="website-desc">Website dengan tema dewa kehancuran dan penciptaan.</p>
+                        <a href="https://itsukashiorii.github.io/itsukashiorii-Goddes-of-destruction-Goddess-of-creation/" target="_blank" class="website-link">Kunjungi</a>
+                    </div>
+                </div>
+
+                <div class="website-card">
+                    <div class="website-preview">
+                        <iframe src="https://itsukashiorii.github.io/akayashi_-funayuurei_./" loading="lazy"></iframe>
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">Akayashi Funayuurei</h3>
+                        <p class="website-desc">Website bertema hantu dan cerita rakyat Jepang.</p>
+                        <a href="https://itsukashiorii.github.io/akayashi_-funayuurei_./" target="_blank" class="website-link">Kunjungi</a>
+                    </div>
+                </div>
+
+                <div class="website-card">
+                    <div class="website-preview">
+                        <iframe src="https://itsukashiorii.github.io/reine/" loading="lazy"></iframe>
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">Reine</h3>
+                        <p class="website-desc">Website elegan dengan desain minimalis modern.</p>
+                        <a href="https://itsukashiorii.github.io/reine/" target="_blank" class="website-link">Kunjungi</a>
+                    </div>
+                </div>
+
+                <div class="website-card">
+                    <div class="website-preview">
+                        <iframe src="https://itsukashiorii.github.io/Itsuka/" loading="lazy"></iframe>
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">Itsuka</h3>
+                        <p class="website-desc">Website personal dengan sentuhan artistik.</p>
+                        <a href="https://itsukashiorii.github.io/Itsuka/" target="_blank" class="website-link">Kunjungi</a>
+                    </div>
+                </div>
+
+                <div class="website-card">
+                    <div class="website-preview">
+                        <iframe src="https://itsukashiorii.github.io/itsukashiorii/" loading="lazy"></iframe>
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">Itsukashiorii</h3>
+                        <p class="website-desc">Portfolio personal dengan desain yang unik.</p>
+                        <a href="https://itsukashiorii.github.io/itsukashiorii/" target="_blank" class="website-link">Kunjungi</a>
+                    </div>
+                </div>
+
+                <div class="website-card">
+                    <div class="website-preview">
+                        <iframe src="https://itsukashiorii.github.io/Fushinana-/" loading="lazy"></iframe>
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">Fushinana</h3>
+                        <p class="website-desc">Website dengan konsep fiksi dan fantasi.</p>
+                        <a href="https://itsukashiorii.github.io/Fushinana-/" target="_blank" class="website-link">Kunjungi</a>
+                    </div>
+                </div>
+
+                <div class="website-card">
+                    <div class="website-preview">
+                        <iframe src="https://itsukashiorii.github.io/Necryuu/" loading="lazy"></iframe>
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">Necryuu</h3>
+                        <p class="website-desc">Website bertema dark dengan elemen misterius.</p>
+                        <a href="https://itsukashiorii.github.io/Necryuu/" target="_blank" class="website-link">Kunjungi</a>
+                    </div>
+                </div>
+
+                <div class="website-card">
+                    <div class="website-preview">
+                        <iframe src="https://itsukashiorii.github.io/1sl4_o02.v02/" loading="lazy"></iframe>
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">1sl4_o02.v02</h3>
+                        <p class="website-desc">Website eksperimental dengan desain futuristik.</p>
+                        <a href="https://itsukashiorii.github.io/1sl4_o02.v02/" target="_blank" class="website-link">Kunjungi</a>
+                    </div>
+                </div>
+
+                <div class="website-card">
+                    <div class="website-preview">
+                        <iframe src="https://itsukashiorii.github.io/1sl4_o02.v2/" loading="lazy"></iframe>
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">1sl4_o02.v2</h3>
+                        <p class="website-desc">Versi upgrade dari desain futuristik sebelumnya.</p>
+                        <a href="https://itsukashiorii.github.io/1sl4_o02.v2/" target="_blank" class="website-link">Kunjungi</a>
+                    </div>
+                </div>
+
+                <div class="website-card">
+                    <div class="website-preview">
+                        <iframe src="https://itsukashiorii.github.io/TokisakiKurumi/" loading="lazy"></iframe>
+                    </div>
+                    <div class="website-info">
+                        <h3 class="website-title">Tokisaki Kurumi</h3>
+                        <p class="website-desc">Website bertema karakter anime dengan desain menarik.</p>
+                        <a href="https://itsukashiorii.github.io/TokisakiKurumi/" target="_blank" class="website-link">Kunjungi</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="groups">
+            <h2>Grup Facebook</h2>
+            <p style="text-align: center; margin-bottom: 15px; font-size: 0.9rem;">Bergabunglah dengan komunitas kami di Facebook!</p>
+            <div class="groups-grid">
+                <div class="group-card">
+                    <div class="group-icon">👥</div>
+                    <h3 class="group-name">Grup Developer 1</h3>
+                    <a href="https://facebook.com/groups/1150566243642537/" target="_blank" class="group-link">Join Group</a>
+                </div>
+
+                <div class="group-card">
+                    <div class="group-icon">💻</div>
+                    <h3 class="group-name">Grup Developer 2</h3>
+                    <a href="https://facebook.com/groups/1161133282739001/" target="_blank" class="group-link">Join Group</a>
+                </div>
+
+                <div class="group-card">
+                    <div class="group-icon">🚀</div>
+                    <h3 class="group-name">Grup Developer 3</h3>
+                    <a href="https://facebook.com/groups/1265876505292053/" target="_blank" class="group-link">Join Group</a>
+                </div>
+
+                <div class="group-card">
+                    <div class="group-icon">⭐</div>
+                    <h3 class="group-name">Grup Developer 4</h3>
+                    <a href="https://facebook.com/groups/1424398122149153/" target="_blank" class="group-link">Join Group</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="social">
+            <h2>Media Sosial</h2>
+            <p style="text-align: center; margin-bottom: 15px; font-size: 0.9rem;">Ikuti saya di media sosial!</p>
+            <div class="social-grid">
+                <a href="https://www.facebook.com/profile.php?id=61579317030806" target="_blank" class="social-card facebook">
+                    <div class="social-icon">📘</div>
+                    <div class="social-name">Facebook</div>
+                    <div class="social-handle">@Profile</div>
+                </a>
+
+                <a href="https://x.com/Kazukikazami03" target="_blank" class="social-card twitter">
+                    <div class="social-icon">🐦</div>
+                    <div class="social-name">Twitter / X</div>
+                    <div class="social-handle">@Kazukikazami03</div>
+                </a>
+
+                <a href="https://www.instagram.com/deltazexisaberneyusimp?igsh=YzljYTk1ODg3Zg==" target="_blank" class="social-card instagram">
+                    <div class="social-icon">📷</div>
+                    <div class="social-name">Instagram</div>
+                    <div class="social-handle">@deltazexisaberneyusimp</div>
+                </a>
+
+                <a href="https://pin.it/1Vh9tXI7T" target="_blank" class="social-card pinterest">
+                    <div class="social-icon">📌</div>
+                    <div class="social-name">Pinterest</div>
+                    <div class="social-handle">@Profile</div>
+                </a>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Hubungi Saya</h2>
+            <div class="whatsapp-container">
+                <p style="font-size: 0.9rem; margin-bottom: 15px;">Ada pertanyaan atau ingin bekerja sama? Hubungi saya langsung via WhatsApp!</p>
+                <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20portfolio%20Anda" 
+                   class="whatsapp-btn" target="_blank">
+                   <span class="whatsapp-icon">📱</span>
+                   Chat via WhatsApp
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Portfolio Festival Jepang</p>
+    </footer>
+
+    <script>
+        // Simple typing effect
+        const texts = ["Web Developer", "Designer", "Creative Thinker"];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typingText');
+
+        function typeText() {
+            const currentText = texts[textIndex];
+            
+            if (!isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                
+                if (charIndex === currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeText, 1500);
+                    return;
+                }
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                }
+            }
+            
+            setTimeout(typeText, isDeleting ? 50 : 100);
+        }
+
+        typeText();
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add more sakura petals dynamically
+        function createSakuraPetal() {
+            const sakura = document.createElement('div');
+            sakura.className = 'sakura';
+            sakura.style.left = Math.random() * 100 + '%';
+            sakura.style.animationDuration = (Math.random() * 5 + 8) + 's';
+            sakura.style.opacity = Math.random() * 0.5 + 0.3;
+            sakura.style.width = sakura.style.height = (Math.random() * 10 + 5) + 'px';
+            document.querySelector('.bg-decoration').appendChild(sakura);
+            
+            // Remove petal after animation
+            setTimeout(() => {
+                sakura.remove();
+            }, parseFloat(sakura.style.animationDuration) * 1000);
+        }
+
+        // Create sakura petals periodically
+        setInterval(createSakuraPetal, 300);
+    </script>
+</body>
+</html>
